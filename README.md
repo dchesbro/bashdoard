@@ -2,7 +2,7 @@
 
 A simple, faux terminal dashboard for servers running Docker.
 
-<img width="792" alt="Screenshot 2023-08-06 at 3 30 00 PM" src="https://github.com/dchesbro/bashdoard/assets/18583653/7d0a6329-ae27-485b-8e9b-4dcf31ef24b5">
+<img width="789" alt="bashdoard" src="https://github.com/dchesbro/bashdoard/assets/18583653/780e4aec-2024-4380-8a72-382ecccb12c0">
 
 ## What does Bashdoard do?
 
