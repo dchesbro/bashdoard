@@ -1,0 +1,46 @@
+@import 'xterm/css/xterm.css';
+
+:root {
+  --theme-background: black;
+  --theme-foreground: white;
+  --theme-outline: black;
+}
+
+body {
+  background: var(--theme-background);
+  color: var(--theme-foreground);
+  margin: 0;
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  font-family: courier-new, courier, monospace;
+  font-size: 13px;
+}
+
+.terminal-wrapper,
+.terminal-wrapper #bterm {
+  height: 100%;
+}
+
+.terminal-wrapper {
+  box-sizing: border-box;
+  min-width: fit-content;
+  outline-offset: -3ch;
+  outline: 1ch solid var(--theme-outline);
+  padding: 5ch;
+}
+
+.terminal-wrapper #bterm {
+  min-width: 82ch;
+}
+
+#__next {
+  inset: 0;
+  overflow: scroll;
+  position: fixed;
+}

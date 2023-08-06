@@ -1,0 +1,35 @@
+{
+  "name": "bashdoard",
+  "version": "2023.06.10",
+  "contributors": [
+    {
+      "name": "Dwight Chesbro",
+      "url": "https://github.com/dchesbro"
+    }
+  ],
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev",
+    "start": "next start"
+  },
+  "dependencies": {
+    "ansi-colors": "^4.1.3",
+    "axios": "^1.3.4",
+    "columnify": "^1.6.0",
+    "cors": "^2.8.5",
+    "figlet": "^1.6.0",
+    "next": "^13.4.12",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "xterm": "^5.2.1",
+    "xterm-addon-canvas": "^0.4.0",
+    "xterm-addon-fit": "^0.7.0",
+    "xterm-addon-web-links": "^0.8.0"
+  },
+  "devDependencies": {
+    "@types/node": "20.4.4",
+    "@types/react": "18.2.15",
+    "typescript": "5.1.6"
+  }
+}
