@@ -2,7 +2,7 @@
 
 A simple, faux terminal dashboard for servers running Docker.
 
-<img width="830" alt="bashdoard" src="https://github.com/dchesbro/bashdoard/assets/18583653/6d908e02-a18c-47dc-91e9-bedced159600">
+<img width="100%" alt="Bashdoard screenshot" src="https://github.com/dchesbro/bashdoard/assets/18583653/6d908e02-a18c-47dc-91e9-bedced159600">
 
 ## What does Bashdoard do?
 
@@ -11,8 +11,8 @@ containers including their ID, image, status, and name. That's it.
 
 ## Why did you build Bashdoard?
 
-Because I wanted a simple dashboard and was not completely satisfied with other 
-similar projects. I also think terminal interfaces look really cool.
+Because I wanted a simple dashboard for my home server and was not completely 
+satisfied with other projects. I also think terminal interfaces look cool.
 
 ## How can I use Bashdoard?
 
@@ -39,7 +39,8 @@ bashdoard:
     - /var/run/docker.sock:/var/run/docker.sock:ro
 ```
 
-Bashdoard is configured using environment variables and includes the following options:
+Bashdoard is configured using environment variables and includes the following 
+options:
 
 ```
 BASHDOARD_HOSTNAME // The server hostname for containers with defined ports.
@@ -47,12 +48,13 @@ BASHDOARD_THEME    // The name of a valid color theme, or `random` for a random 
 BASHDOARD_TITLE    // The server name used in the page title and MOTD.
 ```
 
-By default all containers will be displayed and individual containers can be configured using the following labels:
+By default all containers will be displayed and individual containers can be 
+configured using the following labels:
 
 ```
-my_container:
+example_container:
   labels:
-    - bashdoard.hide=true                      // Hide the container from Bashdoard list.
-    - bashdoard.port=3000                      // The container port, uses the defined hostname as base URL.
-    - bashdoard.url=http://container.localhost // The container URL or any URL really, overrides port label if also defined.
+    - bashdoard.hide=true                     // Hide the container from Bashdoard list.
+    - bashdoard.port=3000                     // The container port, uses the defined hostname as base URL.
+    - bashdoard.url=http://container.host.tld // The container or any other URL or any URL, overrides port label if also defined.
 ```
