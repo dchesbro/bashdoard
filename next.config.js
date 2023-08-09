@@ -2,8 +2,8 @@
 module.exports = {
   output: 'standalone',
   publicRuntimeConfig: {
-    hostname: process.env.BASHDOARD_HOSTNAME,
-    theme: process.env.BASHDOARD_THEME,
-    title: process.env.BASHDOARD_TITLE,
+    hostname: process.env.BASHDOARD_HOSTNAME ?? 'localhost',
+    theme: process.env.BASHDOARD_THEME ?? 'random',
+    title: process.env.BASHDOARD_TITLE ?? 'BSHDRD',
   },
 }
