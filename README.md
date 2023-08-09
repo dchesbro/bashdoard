@@ -19,7 +19,7 @@ satisfied with other projects. I also think terminal interfaces look cool.
 The easiest way to deploy Bashdoard is by using Docker:
 
 ```
-docker run --name bashdoard -e BASHDOARD_HOSTNAME=localhost -e BASHDOARD_THEME=random -e BASHDOARD_TITLE=BSHDRD -p 80:3300 -v /var/run/docker.sock:/var/run/docker.sock:ro ghcr.io/dchesbro/bashdoard:latest
+docker run --name bashdoard -e BASHDOARD_HOSTNAME=localhost -e BASHDOARD_THEME=random -e BASHDOARD_TITLE=BSHDRD -p 80:3300 -v /var/run/docker.sock:/var/run/docker.sock:ro ghcr.io/dchesbro/bashdoard:main
 ```
 
 Or Docker Compose:
@@ -31,7 +31,7 @@ bashdoard:
     - BASHDOARD_HOSTNAME=localhost
     - BASHDOARD_THEME=random
     - BASHDOARD_TITLE=BSHDRD
-  image: ghcr.io/dchesbro/bashdoard:latest
+  image: ghcr.io/dchesbro/bashdoard:main
   ports:
     - 80:3300
   restart: unless-stopped
