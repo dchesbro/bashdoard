@@ -1,7 +1,5 @@
 import '../styles/globals.css';
 
-function Bashdoard({ Component, pageProps }) {
+export default function Bashdoard({ Component, pageProps }) {
   return <Component {...pageProps} />
 }
-
-export default Bashdoard

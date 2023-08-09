@@ -6,9 +6,12 @@ import { useEffect, useRef } from 'react';
 import { WebLinksAddon } from 'xterm-addon-web-links';
 import * as commands from './commands';
 import c from 'ansi-colors';
+import getConfig from 'next/config';
+
+const { publicRuntimeConfig } = getConfig();
 
 export default () => {
-  const colors = findTheme(process.env.NEXT_PUBLIC_THEME_DEFAULT).colors;
+  const colors = findTheme(publicRuntimeConfig.theme).colors;
   const fit = useRef(new FitAddon());
 
   useEffect(() => {

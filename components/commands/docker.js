@@ -1,5 +1,8 @@
 import axios from 'axios';
 import columnify from 'columnify';
+import getConfig from 'next/config';
+
+const { publicRuntimeConfig } = getConfig();
 
 export const docker = async (argv, globals) => {
   const { c } = globals;
@@ -14,7 +17,7 @@ export const docker = async (argv, globals) => {
       if ('bashdoard.port' in container.Labels)  {
         const port = container.Labels['bashdoard.port'];
 
-        url = `http://${process.env.NEXT_PUBLIC_HOSTNAME}:${port}`;
+        url = `http://${publicRuntimeConfig.hostname}:${port}`;
 
       // ...else, if URL label found, set to URL.
       } else if ('bashdoard.url' in container.Labels) {
