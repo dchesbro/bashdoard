@@ -44,9 +44,12 @@ options:
 
 ```
 BASHDOARD_HOSTNAME // The server hostname for containers with defined ports.
-BASHDOARD_THEME    // The name of a valid color theme, or `random` for a random theme.
+BASHDOARD_THEME    // The name of a valid color theme, or `random` for a random theme each time.
 BASHDOARD_TITLE    // The server name used in the page title and MOTD.
 ```
+
+Color themes are provided by [Gogh](https://github.com/Gogh-Co/Gogh) and can be 
+previewed [here](https://gogh-co.github.io/Gogh/).
 
 By default all containers will be displayed and individual containers can be 
 configured using the following labels:
