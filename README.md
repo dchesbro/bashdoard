@@ -2,6 +2,8 @@
 
 A simple, faux terminal dashboard for servers running Docker.
 
+<img width="830" alt="bashdoard" src="https://github.com/dchesbro/bashdoard/assets/18583653/6d908e02-a18c-47dc-91e9-bedced159600">
+
 ## What does Bashdoard do?
 
 Bashdoard displays the server name, time, and an alphabetical list of Docker 
