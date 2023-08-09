@@ -16,10 +16,33 @@ similar projects. I also think terminal interfaces look really cool.
 
 ## How can I use Bashdoard?
 
-Bashdoard is configured using a `.env` file and includes the following options:
+The easiest way to deploy Bashdoard is by using Docker:
 
 ```
-NEXT_PUBLIC_BSHDRD_HOSTNAME // The server hostname for containers with defined ports.
-NEXT_PUBLIC_BSHDRD_THEME    // The name of a valid color theme, or `random` for a random theme.
-NEXT_PUBLIC_BSHDRD_TITLE    // The server name used in the page title and MOTD.
+docker run --name bashdoard -e BASHDOARD_HOSTNAME=localhost -e BASHDOARD_THEME=random -e BASHDOARD_TITLE=BSHDRD -p 80:3300 -v /var/run/docker.sock:/var/run/docker.sock:ro ghcr.io/dchesbro/bashdoard:latest
+```
+
+Or Docker Compose:
+
+```
+bashdoard:
+    container_name: bashdoard
+    environment:
+      - BASHDOARD_HOSTNAME=localhost
+      - BASHDOARD_THEME=random
+      - BASHDOARD_TITLE=BSHDRD
+    image: ghcr.io/dchesbro/bashdoard:latest
+    ports:
+      - 80:3300
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+```
+
+Bashdoard is configured using environment variables and includes the following options:
+
+```
+BASHDOARD_HOSTNAME // The server hostname for containers with defined ports.
+BASHDOARD_THEME    // The name of a valid color theme, or `random` for a random theme.
+BASHDOARD_TITLE    // The server name used in the page title and MOTD.
 ```
