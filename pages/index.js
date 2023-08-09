@@ -7,10 +7,6 @@ const Terminal = dynamic(() => import('../components/Terminal'), {
   ssr: false,
 });
 
-export const getServerSideProps = async () => {
-  return { props: {} }
-}
-
 export default function Index() {
   return (
     <>

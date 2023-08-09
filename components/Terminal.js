@@ -11,7 +11,7 @@ import getConfig from 'next/config';
 const { publicRuntimeConfig } = getConfig();
 
 export default () => {
-  const colors = findTheme(process.env.BASHDOARD_THEME).colors;
+  const colors = findTheme(publicRuntimeConfig.theme).colors;
   const fit = useRef(new FitAddon());
 
   useEffect(() => {
