@@ -26,17 +26,17 @@ Or Docker Compose:
 
 ```
 bashdoard:
-    container_name: bashdoard
-    environment:
-      - BASHDOARD_HOSTNAME=localhost
-      - BASHDOARD_THEME=random
-      - BASHDOARD_TITLE=BSHDRD
-    image: ghcr.io/dchesbro/bashdoard:latest
-    ports:
-      - 80:3300
-    restart: unless-stopped
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+  container_name: bashdoard
+  environment:
+    - BASHDOARD_HOSTNAME=localhost
+    - BASHDOARD_THEME=random
+    - BASHDOARD_TITLE=BSHDRD
+  image: ghcr.io/dchesbro/bashdoard:latest
+  ports:
+    - 80:3300
+  restart: unless-stopped
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock:ro
 ```
 
 Bashdoard is configured using environment variables and includes the following options:
@@ -45,4 +45,14 @@ Bashdoard is configured using environment variables and includes the following o
 BASHDOARD_HOSTNAME // The server hostname for containers with defined ports.
 BASHDOARD_THEME    // The name of a valid color theme, or `random` for a random theme.
 BASHDOARD_TITLE    // The server name used in the page title and MOTD.
+```
+
+By default all containers will be displayed and individual containers can be configured using the following labels:
+
+```
+my_container:
+  labels:
+    - bashdoard.hide=true                      // Hide the container from Bashdoard list.
+    - bashdoard.port=3000                      // The container port, uses the defined hostname as base URL.
+    - bashdoard.url=http://container.localhost // The container URL or any URL really, overrides port label if also defined.
 ```
