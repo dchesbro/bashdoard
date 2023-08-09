@@ -3,10 +3,13 @@ import getConfig from 'next/config';
 import Head from 'next/head';
 
 const { publicRuntimeConfig } = getConfig();
-
 const Terminal = dynamic(() => import('../components/Terminal'), {
   ssr: false,
 });
+
+export const getServerSideProps = async () => {
+  return { props: {} }
+}
 
 export default function Index() {
   return (
