@@ -59,5 +59,5 @@ example_container:
   labels:
     - bashdoard.hide=true                     // Hide the container from Bashdoard list.
     - bashdoard.port=3000                     // The container port, uses the defined hostname as base URL.
-    - bashdoard.url=http://container.host.tld // The container or any other URL, overrides port label if also defined.
+    - bashdoard.url=http://container.host.tld // The container URL or any other URL, overrides port label if also defined.
 ```
