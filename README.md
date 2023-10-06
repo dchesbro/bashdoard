@@ -51,7 +51,7 @@ BASHDOARD_TITLE    // The server name used in the page title and MOTD.
 Color themes are provided by [Gogh](https://github.com/Gogh-Co/Gogh) and can be 
 previewed [here](https://gogh-co.github.io/Gogh/).
 
-By default all containers will be displayed and individual containers can be 
+By default all containers will be displayed, and individual containers can be 
 configured using the following labels:
 
 ```
