@@ -81,7 +81,7 @@ export default () => {
 
     // Initialize terminal.
     terminal.open(document.getElementById('bterm'));
-    terminal.focus();
+    terminal.write('\x1b[?25l');
 
     // Resize to fit.
     fit.current.fit();
