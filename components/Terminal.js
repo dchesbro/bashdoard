@@ -93,13 +93,12 @@ export default () => {
     // Display message of the day and docker containers.
     (async () => {
       await exec('motd');
-      await exec('docker');
-    })();
+      await exec('docker').then(() => {
 
-    // Scroll to top of terminal buffer.
-    setTimeout(() => {
-      terminal.scrollToTop();
-    }, 0);
+        // Scroll to top of terminal buffer.
+        terminal.scrollToTop();
+      });
+    })();
 
     return () => {
       terminal.dispose();
