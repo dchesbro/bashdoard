@@ -32,6 +32,7 @@ export default () => {
           }
         }
       },
+      scrollOnUserInput: false,
       theme: {
         ...colors,
         cursor: colors.background,
@@ -94,6 +95,11 @@ export default () => {
       await exec('motd');
       await exec('docker');
     })();
+
+    // Scroll to top of terminal buffer.
+    setTimeout(() => {
+      terminal.scrollToTop();
+    }, 0);
 
     return () => {
       terminal.dispose();
