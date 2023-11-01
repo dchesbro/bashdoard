@@ -95,9 +95,6 @@ export default () => {
       await exec('docker');
     })();
 
-    // Scroll to top of terminal buffer.
-    terminal.scrollToTop();
-
     return () => {
       terminal.dispose();
     };
