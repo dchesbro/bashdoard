@@ -7,7 +7,7 @@ A simple faux terminal dashboard for servers running Docker.
 ## What does Bashdoard do?
 
 Bashdoard displays the server name, time, and an alphabetical list of Docker 
-containers including their ID, image, status, and name. That's it.
+containers including their ID, image, status, and name. That's all, folks!
 
 ## Why did you build Bashdoard?
 
