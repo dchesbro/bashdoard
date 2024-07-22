@@ -1,0 +1,46 @@
+/* XTerm JS */
+@import '@xterm/xterm/css/xterm';
+
+:root {
+  --theme-background: black;
+  --theme-foreground: white;
+  --theme-outline: black;
+
+  overscroll-behavior: none;
+  font-size: 11px;
+  font-family: courier-new, courier, monospace;
+
+  @media (min-width: 768px) {
+    font-size: 13px;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--theme-background);
+  scrollbar-width: none;
+  color: var(--theme-foreground);
+
+  &:-webkit-scrollbar {
+    display: none;
+  }
+}
+
+#__next {
+  display: flex;
+  position: fixed;
+  inset: 0;
+  overflow-x: scroll;
+}
+
+#b-term {
+  flex-grow: 1;
+  box-sizing: border-box;
+  outline: 1ch solid var(--theme-outline);
+  outline-offset: -3ch;
+  padding: 5ch;
+
+  .wrapper {
+    height: 100%;
+  }
+}
