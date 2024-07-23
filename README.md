@@ -1,40 +1,63 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Bashdoard
 
-## Getting Started
+A faux terminal dashboard for servers running Docker.
 
-First, run the development server:
+<img width="100%" alt="258669310-6d908e02-a18c-47dc-91e9-bedced159600" src="https://github.com/dchesbro/bashdoard/assets/18583653/38e3e375-8c60-41b6-ab6d-5c4580817096">
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## What does Bashdoard do?
+
+Bashdoard displays the server name, time, and an alphabetical list of Docker
+containers including their ID, image, status, and name. That's it.
+
+## Why did you build Bashdoard?
+
+Because I wanted a simple dashboard for my home server and was not completely
+satisfied with other projects. I also think terminal interfaces look cool.
+
+## How can I use Bashdoard?
+
+The easiest way to deploy Bashdoard is by using Docker:
+
+```
+docker run --name bashdoard -e BSHDRD_HOSTNAME=localhost -e BSHDRD_THEME=random -e BSHDRD_TITLE=BSHDRD -p 80:3000 -v /var/run/docker.sock:/var/run/docker.sock:ro ghcr.io/dchesbro/bashdoard:main
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Or Docker Compose:
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```
+bashdoard:
+  container_name: bashdoard
+  environment:
+    - BSHDRD_HOSTNAME=localhost
+    - BSHDRD_THEME=random
+    - BSHDRD_TITLE=BSHDRD
+  image: ghcr.io/dchesbro/bashdoard:main
+  ports:
+    - 80:3000
+  restart: unless-stopped
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock:ro
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Bashdoard is configured using environment variables and includes the following
+options:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```
+BSHDRD_HOSTNAME // The server hostname for containers with defined ports.
+BSHDRD_THEME    // The name of a valid color theme ID, or `random` for a random theme each time.
+BSHDRD_TITLE    // The server name used in the page title and MOTD.
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Color themes are provided by [Gogh](https://github.com/Gogh-Co/Gogh) and can be
+previewed [here](https://gogh-co.github.io/Gogh/).
 
-## Learn More
+By default all containers will be displayed, and individual containers can be
+configured using the following labels:
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```
+example_container:
+  labels:
+    - bashdoard.hide=true                     // Hide the container from Bashdoard list.
+    - bashdoard.port=3000                     // The container port, uses the defined hostname as base URL.
+    - bashdoard.url=http://container.host.tld // The container URL or any other URL, overrides port label if also defined.
+```
