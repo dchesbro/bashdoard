@@ -32,14 +32,14 @@ RUN npm run build
 FROM base AS runtime
 
 WORKDIR /app
-COPY --from=build /app/public ./public
 COPY --from=build /app/.next/standalone ./
 COPY --from=build /app/.next/static ./.next/static
+COPY --from=build /app/next.config.mjs ./
+COPY --from=build /app/node_modules/next ./node_modules/next
+COPY --from=build /app/public ./public
 
-ENV HOSTNAME=0.0.0.0
-ENV NODE_ENV=production
 ENV PORT=3000
 
 EXPOSE 3000
 
-CMD node .next/standalone/server.js
+CMD node_modules/next/dist/bin/next start

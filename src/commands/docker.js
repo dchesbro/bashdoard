@@ -13,7 +13,7 @@ function formatName(container) {
 
   if (Object.keys(container.Labels).length) {
     if (container.Labels['bashdoard.port']) {
-      url = `http://${publicRuntimeConfig.BSHDRD_HOSTNAME}:${container.Labels['bashdoard.port']}`;
+      url = `http://${publicRuntimeConfig.hostname}:${container.Labels['bashdoard.port']}`;
     } else if (container.Labels['bashdoard.url']) {
       url = container.Labels['bashdoard.url'];
     }
