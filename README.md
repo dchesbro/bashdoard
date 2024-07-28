@@ -31,7 +31,7 @@ bashdoard:
     - BSHDRD_TITLE=BSHDRD
   image: ghcr.io/dchesbro/bashdoard:main
   ports:
-    - 80:3000
+    - 80:4321
   restart: unless-stopped
   volumes:
     - /var/run/docker.sock:/var/run/docker.sock:ro
@@ -56,6 +56,6 @@ configured using the following labels:
 example_container:
   labels:
     - bashdoard.hide=true                     // Hide the container from Bashdoard list.
-    - bashdoard.port=3000                     // The container port, uses the defined hostname as base URL.
+    - bashdoard.port=8080                     // The container port, uses the defined hostname as base URL.
     - bashdoard.url=http://container.host.tld // The container URL or any other URL, overrides port label if also defined.
 ```
