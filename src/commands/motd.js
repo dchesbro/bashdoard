@@ -11,5 +11,5 @@ export function motd() {
     whitespaceBreak: true,
   });
 
-  return `${banner}\r\n\Last login: ${new Date().toUTCString()}\r\n`;
+  return `${banner}\r\nLast login: ${new Date().toUTCString()}\r\n`;
 }

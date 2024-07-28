@@ -48,10 +48,9 @@ const { class: className } = Astro.props;
 
   // functions
   async function exec() {
-    fitAddon.fit();
-
     terminal.writeln(motd());
     terminal.writeln(await docker(isMobile.matches));
+    fitAddon.fit();
   }
 
   function getFontSize(bool) {
