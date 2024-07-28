@@ -1,0 +1,94 @@
+---
+const { class: className } = Astro.props;
+---
+
+<div class:list={['a-terminal', className]}>
+  <div class="xterm-js"></div>
+</div>
+
+<script>
+  import { docker } from '@/commands/docker';
+  import { FitAddon } from '@xterm/addon-fit';
+  import { getTheme, setCSS } from '@/commands/theme';
+  import { motd } from '@/commands/motd';
+  import { Terminal } from '@xterm/xterm';
+  import { WebglAddon } from '@xterm/addon-webgl';
+  import { WebLinksAddon } from '@xterm/addon-web-links';
+
+  // variables
+  const { colors } = getTheme();
+  const fitAddon = new FitAddon();
+  const isMobile = window.matchMedia('(max-width: 768px)');
+  const terminal = new Terminal({
+    altClickMovesCursor: false,
+    cols: 0,
+    convertEol: true,
+    disableStdin: true,
+    fontSize: getFontSize(isMobile.matches),
+    lineHeight: 1.2,
+    linkHandler: {
+      activate: (e, uri) => {
+        const newWindow = window.open();
+
+        if (newWindow) {
+          try {
+            newWindow.opener = null;
+          } catch {}
+
+          newWindow.location.href = uri;
+        }
+      },
+    },
+    scrollOnUserInput: false,
+    theme: {
+      ...colors,
+      cursor: colors.background,
+    },
+  });
+
+  // functions
+  async function exec() {
+    fitAddon.fit();
+
+    terminal.writeln(motd());
+    terminal.writeln(await docker(isMobile.matches));
+  }
+
+  function getFontSize(bool) {
+    return bool ? 11 : 13;
+  }
+
+  // set CSS theme variables
+  setCSS(colors);
+
+  // load addons
+  terminal.loadAddon(fitAddon);
+  terminal.loadAddon(new WebglAddon());
+  terminal.loadAddon(new WebLinksAddon());
+
+  // initialize terminal
+  terminal.open(document.querySelector('.xterm-js'));
+  exec();
+
+  // events
+  isMobile.addEventListener('change', ({ matches }) => {
+    terminal.options.fontSize = getFontSize(matches);
+    terminal.clear();
+    exec();
+  });
+  window.addEventListener('resize', () => fitAddon.fit());
+</script>
+
+<style>
+  .a-terminal {
+    flex-grow: 1;
+    box-sizing: border-box;
+    outline: 1ch solid var(--theme-outline);
+    outline-offset: -3ch;
+    padding: 5ch;
+
+    .xterm-js {
+      height: 100%;
+    }
+  }
+</style>

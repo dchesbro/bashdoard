@@ -1,9 +1,8 @@
 import axios from 'axios';
 import c from 'ansi-colors';
 import columnify from 'columnify';
-import getConfig from 'next/config';
 
-const { publicRuntimeConfig } = getConfig();
+const { hostname } = JSON.parse(document.body.dataset.env);
 
 c.enabled = true;
 
@@ -13,7 +12,7 @@ function formatName(container) {
 
   if (Object.keys(container.Labels).length) {
     if (container.Labels['bashdoard.port']) {
-      url = `http://${publicRuntimeConfig.hostname}:${container.Labels['bashdoard.port']}`;
+      url = `http://${hostname}:${container.Labels['bashdoard.port']}`;
     } else if (container.Labels['bashdoard.url']) {
       url = container.Labels['bashdoard.url'];
     }

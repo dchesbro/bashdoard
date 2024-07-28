@@ -26,21 +26,9 @@ body {
   }
 }
 
-#__next {
+#page-content {
   display: flex;
   position: fixed;
   inset: 0;
   overflow-x: scroll;
-}
-
-#b-term {
-  flex-grow: 1;
-  box-sizing: border-box;
-  outline: 1ch solid var(--theme-outline);
-  outline-offset: -3ch;
-  padding: 5ch;
-
-  .wrapper {
-    height: 100%;
-  }
 }

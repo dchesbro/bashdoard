@@ -1,14 +1,9 @@
-FROM node:20.9.0-alpine AS base
-
-# install dependencies
-FROM base AS deps
-RUN apk add --no-cache libc6-compat
+FROM node:20.9.0-alpine AS build
 
 WORKDIR /app
-COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
+COPY . .
 
-RUN \
-  if [ -f yarn.lock ]; then \
+RUN if [ -f yarn.lock ]; then \
     yarn --frozen-lockfile; \
   elif [ -f package-lock.json ]; then \
     npm ci; \
@@ -16,30 +11,33 @@ RUN \
     corepack enable pnpm && pnpm i; \
   else \
     echo "Lockfile not found." && exit 1; \
+  fi && \
+  npm run build
+
+FROM node:20.9.0-alpine AS production
+
+WORKDIR /app
+COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
+
+RUN if [ -f yarn.lock ]; then \
+    yarn --frozen-lockfile --prod; \
+  elif [ -f package-lock.json ]; then \
+    npm ci --prod; \
+  elif [ -f pnpm-lock.yaml ]; then \
+    corepack enable pnpm && pnpm i --prod; \
+  else \
+    echo "Lockfile not found." && exit 1; \
   fi
 
-# build
-FROM base AS build
+FROM node:20.9.0-alpine AS runtime 
 
 WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
-COPY . .
+COPY --from=build /app/dist .
+COPY --from=production /app/node_modules ./node_modules
 
-ENV NEXT_TELEMETRY_DISABLED=1
-RUN npm run build
+ENV HOST=0.0.0.0
+ENV PORT=4321
 
-# run server
-FROM base AS runtime
+EXPOSE 4321
 
-WORKDIR /app
-COPY --from=build /app/.next/standalone ./
-COPY --from=build /app/.next/static ./.next/static
-COPY --from=build /app/next.config.mjs ./
-COPY --from=build /app/node_modules/next ./node_modules/next
-COPY --from=build /app/public ./public
-
-ENV PORT=3000
-
-EXPOSE 3000
-
-CMD node_modules/next/dist/bin/next start
+CMD node ./server/entry.mjs

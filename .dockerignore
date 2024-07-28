@@ -1,7 +1,7 @@
+.astro
 .dockerignore
+.env
 .git
-.next
-docker
 Dockerfile
 node_modules
 npm-debug.log

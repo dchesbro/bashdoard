@@ -1,0 +1,23 @@
+---
+import PageMetadata from '@/components/PageMetadata.astro';
+import '@/assets/css/frontend.css';
+
+const { author, class: className, description, title, ...props } = Astro.props;
+---
+
+<html lang="en" dir="ltr">
+  <head>
+    <link href="/favicon.ico" rel="icon" type="image/x-icon" />
+    <meta charset="utf-8" />
+    <meta content="ie=edge" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    {/* Page metadata */}
+    <PageMetadata author={author} description={description} title={title} />
+  </head>
+  <body class:list={['a-page', className]} id="page" {...props}>
+    <main id="page-content">
+      <slot />
+    </main>
+  </body>
+</html>

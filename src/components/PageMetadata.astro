@@ -1,0 +1,20 @@
+---
+const { author, description, keywords, noindex, title = 'Page' } = Astro.props;
+---
+
+{/* metadata */}
+{author && <meta name="author" content={author} />}
+{description && <meta name="description" content={description} />}
+{keywords && <meta name="keywords" content={keywords.join(', ')} />}
+{
+  noindex && (
+    <>
+      <meta name="googlebot" content="noindex" />
+      <meta name="robots" content="noindex" />
+    </>
+  )
+}
+<meta name="title" content={title} />
+
+{/* page title */}
+<title>{title}</title>

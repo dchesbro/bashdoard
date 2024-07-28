@@ -1,17 +1,19 @@
 import themes from '@/assets/gogh.json';
 
-export function findTheme(name) {
-  let theme = undefined;
+const { theme } = JSON.parse(document.body.dataset.env);
 
-  if (name === 'random') {
-    theme = themes[Math.floor(Math.random() * themes.length)];
+export function getTheme() {
+  let json = undefined;
+
+  if (theme === 'random') {
+    json = themes[Math.floor(Math.random() * themes.length)];
   } else {
-    theme = themes.find(
-      (theme) => name.replaceAll(' ', '-').toLowerCase() === theme.id
+    json = themes.find(
+      (name) => theme.replaceAll(' ', '-').toLowerCase() === name.id
     );
   }
 
-  return theme;
+  return json;
 }
 
 export function setCSS(colors) {

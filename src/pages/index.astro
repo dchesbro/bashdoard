@@ -1,0 +1,13 @@
+---
+import { getSecret } from 'astro:env/server';
+import Page from '@/layouts/Page.astro';
+import Terminal from '@/components/Terminal.astro';
+
+const hostname = getSecret('BSHDRD_HOSTNAME') || 'localhost';
+const theme = getSecret('BSHDRD_THEME') || 'random';
+const title = getSecret('BSHDRD_TITLE') || 'BSHDRD';
+---
+
+<Page title={title} data-env={JSON.stringify({ hostname, theme, title })}>
+  <Terminal />
+</Page>

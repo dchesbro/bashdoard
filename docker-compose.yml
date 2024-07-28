@@ -7,7 +7,7 @@ services:
       - BSHDRD_TITLE=BSHDRD
     image: ghcr.io/dchesbro/bashdoard:main
     ports:
-      - 3000:3000
+      - 4321:4321
     restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
