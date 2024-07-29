@@ -70,7 +70,7 @@ export async function docker(mobile) {
         container_id: { maxWidth: 12 },
         image: { maxWidth: 24 },
       },
-      headingTransform: (a) => a.replace('_', ' ').toUpperCase(),
+      headingTransform: (a) => c.bold(a.replace('_', ' ').toUpperCase()),
       truncate: true,
     };
 
