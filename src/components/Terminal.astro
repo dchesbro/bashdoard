@@ -26,19 +26,7 @@ const { class: className } = Astro.props;
     disableStdin: true,
     fontSize: getFontSize(isMobile.matches),
     lineHeight: 1.2,
-    linkHandler: {
-      activate: (e, uri) => {
-        const newWindow = window.open();
-
-        if (newWindow) {
-          try {
-            newWindow.opener = null;
-          } catch {}
-
-          newWindow.location.href = uri;
-        }
-      },
-    },
+    linkHandler: { activate: (e, uri) => window.open(uri, '_blank') },
     scrollOnUserInput: false,
     theme: {
       ...colors,
