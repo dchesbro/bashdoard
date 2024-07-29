@@ -48,13 +48,13 @@ const { class: className } = Astro.props;
 
   // functions
   async function exec() {
+    fitAddon.fit();
     terminal.writeln(motd());
     terminal.writeln(await docker(isMobile.matches));
-    fitAddon.fit();
   }
 
   function getFontSize(bool) {
-    return bool ? 12 : 14;
+    return bool ? 11 : 13;
   }
 
   // set CSS theme variables
