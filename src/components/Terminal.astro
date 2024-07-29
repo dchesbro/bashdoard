@@ -27,7 +27,10 @@ const { class: className } = Astro.props;
     fontSize: getFontSize(isMobile.matches),
     lineHeight: 1.2,
     linkHandler: {
-      activate: (e, uri) => window.open(uri, '_blank'),
+      activate: (e, uri) => {
+        window.open(uri, '_blank');
+      },
+      allowNonHttpProtocols: true,
     },
     scrollOnUserInput: false,
     theme: {
