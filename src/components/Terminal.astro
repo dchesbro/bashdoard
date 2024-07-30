@@ -28,9 +28,9 @@ const { class: className } = Astro.props;
     lineHeight: 1.2,
     linkHandler: {
       activate: (e, uri) => {
+        console.log(e);
         window.open(uri, '_blank');
       },
-      allowNonHttpProtocols: true,
     },
     scrollOnUserInput: false,
     theme: {
