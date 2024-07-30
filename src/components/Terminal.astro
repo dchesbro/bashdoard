@@ -28,7 +28,6 @@ const { class: className } = Astro.props;
     lineHeight: 1.2,
     linkHandler: {
       activate: (e, uri) => {
-        console.log(e);
         window.open(uri, '_blank');
       },
     },
@@ -60,6 +59,7 @@ const { class: className } = Astro.props;
 
   // initialize terminal
   terminal.open(document.querySelector('.xterm-js'));
+  terminal.focus();
   exec();
 
   // events
